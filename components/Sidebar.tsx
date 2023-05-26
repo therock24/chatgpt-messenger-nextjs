@@ -1,49 +1,53 @@
-'use client'
+"use client";
 
-import React from 'react'
-import NewChat from './NewChat'
-import { useSession, signOut } from 'next-auth/react'
-import { collection, orderBy, query } from 'firebase/firestore';
-import { useCollection } from "react-firebase-hooks/firestore" 
-import { db } from '@/firebase';
-import ChatRow from './ChatRow';
+import React from "react";
+import NewChat from "./NewChat";
+import { useSession, signOut } from "next-auth/react";
+import { collection, orderBy, query } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { db } from "@/firebase";
+import ChatRow from "./ChatRow";
 
 function Sidebar() {
-    const { data: session} = useSession();
+  const { data: session } = useSession();
 
-    const [chats, loading, error] = useCollection(
-        session && query(collection(db, 'users', session.user?.email!, 'chats'),
+  const [chats, loading, error] = useCollection(
+    session &&
+      query(
+        collection(db, "users", session.user?.email!, "chats"),
         orderBy("createdAt", "asc")
-    ));
+      )
+  );
 
-    console.log(chats)
+  console.log(chats);
 
   return (
-    <div className='p-2 flex flex-col h-screen'>
-        <div className='flex-1'>
-            <div>
-                {/* NewChat */}
-                <NewChat />
-                <div>
-                    {/* Model Selections */}
-                </div>
-                {/* Map through the ChatRows */}
-                {chats?.docs.map(chat => (
-                    <ChatRow key={chat.id} id={chat.id} />
-                ))}
-            </div>
+    <div className="p-2 flex flex-col h-screen">
+      <div className="flex-1">
+        <div>
+          {/* NewChat */}
+          <NewChat />
+          <div>{/* Model Selections */}</div>
+          {/* Map through the ChatRows */}
+          {chats?.docs.map((chat) => (
+            <ChatRow key={chat.id} id={chat.id} />
+          ))}
         </div>
-        {session && (
-            <img 
-            onClick={() => signOut()}
-            src={session.user?.image!} 
-            alt="Profile pic"
-            className='h-12 w-12 rounded-full cursor-pointer mx-auto mb-2
-            hover:opacity-50' />
-        )}
-        <p className='rounded mx-auto mb-2 text-center justify-center'>Sign Out</p>
+      </div>
+      {session && (
+        <img
+          onClick={() => signOut()}
+          src={session.user?.image!}
+          alt="Profile pic"
+          className="h-12 w-12 rounded-full cursor-pointer mx-auto mb-2
+            hover:opacity-50"
+        />
+      )}
+      <p className="rounded mx-auto mb-2 text-center justify-center">
+        Sign Out
+      </p>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
