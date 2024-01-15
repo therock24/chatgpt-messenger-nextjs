@@ -1,6 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ChatGPT-MESSENGER-Clone
+
+## Introduction
+Welcome to the repository for a ChatGPT clone, a powerful chatbot application built with a modern tech stack including Next.js, Tailwind CSS, Firebase, Vercel, and React.js. This project aims to replicate the functionalities of the advanced ChatGPT model in a user-friendly web application.
+
+## Features
+- Real-time chat interface
+- Authentication using Google OAuth (Firebase)
+- Responsive UI with Tailwind CSS
+- Deployed on Vercel for high availability
+
+## Tech Stack
+- **Next.js**: Server-side rendering and routing
+- **React.js**: Frontend library for building the user interface
+- **Tailwind CSS**: Styling framework for a sleek, responsive design
+- **Firebase**: Backend service for authentication and data storage
+- **Vercel**: Platform for deploying and hosting the application
 
 ## Getting Started
+### Prerequisites
+- Node.js (v12.x or later)
+- npm or yarn
 
 First, run the development server:
 
